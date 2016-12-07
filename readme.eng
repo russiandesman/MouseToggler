@@ -1,0 +1,4 @@
+Sometimes there is a need to take mouse with left hand, sometimes with right hand.
+The tool is required to toggle between righthanded buttons layout and lefthanded layout.
+Also cursor pointers should have the shape corresponding to hand in use.
+This project is intended for this purpose.
