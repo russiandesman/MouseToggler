@@ -1,0 +1,13 @@
+copy "%SystemRoot%\cursors\aero_arrow_xl.cur" aero_arrow_xl.cur
+copy "%SystemRoot%\cursors\aero_helpsel_xl.cur" aero_helpsel_xl.cur
+copy "%SystemRoot%\cursors\aero_working_xl.ani" aero_working_xl.ani
+copy "%SystemRoot%\cursors\aero_busy_xl.ani" aero_busy_xl.ani
+copy "%SystemRoot%\cursors\aero_pen_xl.cur" aero_pen_xl.cur
+copy "%SystemRoot%\cursors\aero_unavail_xl.cur" aero_unavail_xl.cur
+copy "%SystemRoot%\cursors\aero_ns_xl.cur" aero_ns_xl.cur
+copy "%SystemRoot%\cursors\aero_ew_xl.cur" aero_ew_xl.cur
+copy "%SystemRoot%\cursors\aero_nwse_xl.cur" aero_nwse_xl.cur
+copy "%SystemRoot%\cursors\aero_nesw_xl.cur" aero_nesw_xl.cur
+copy "%SystemRoot%\cursors\aero_move_xl.cur" aero_move_xl.cur
+copy "%SystemRoot%\cursors\aero_up_xl.cur" aero_up_xl.cur
+copy "%SystemRoot%\cursors\aero_link_xl.cur" aero_link_xl.cur
