@@ -2,3 +2,9 @@ Sometimes there is a need to take mouse with left hand, sometimes with right han
 The tool is required to toggle between righthanded buttons layout and lefthanded layout.
 Also cursor pointers should have the shape corresponding to hand in use.
 This project is intended for this purpose.
+
+Build:
+1) Install Inno Setup (it will associate .iss files with inno setup compiler)
+2) do %windir%\Microsoft.Net\Framework\v2.0.50727\csc.exe mouse_toggle.cs
+3) doubleclick on each .iss file and compile each of them
+4) done
