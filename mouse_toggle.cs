@@ -74,6 +74,25 @@ namespace mouse_switcher
             const uint SPIF_SENDCHANGE = 0x02;
             return SystemParametersInfo(SPI_SETCURSORS, 0, IntPtr.Zero, SPIF_UPDATEINIFILE | SPIF_SENDCHANGE);
         }
+
+        static bool SaveButtonsState(bool lefthanded)
+        {
+            bool result = false;
+
+            try
+            {
+                RegistryKey mouse_key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Mouse", true);
+                mouse_key.SetValue(@"SwapMouseButtons", lefthanded ? "1" : "0");
+                result = true;
+                mouse_key.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("{0}: unable to SaveButtonsState", e.Message);
+            }
+
+            return result;
+        }
             
         static void Main(string[] args)
         {
@@ -83,10 +102,12 @@ namespace mouse_switcher
             if (leftHandedNow)
             {
                 SwapMouseButton(false);
+                SaveButtonsState(false);
                 SetCursorScheme(predefined_righthanded_scheme_name);
             }
             else
             {
+                SaveButtonsState(true);
                 SetCursorScheme(predefined_lefthanded_scheme_name);
             }
             ApplyCursorScheme();
