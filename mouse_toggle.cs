@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
@@ -94,10 +95,18 @@ namespace mouse_switcher
             return result;
         }
             
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
-            string predefined_lefthanded_scheme_name = "mouse_toggle_scheme_left";
-            string predefined_righthanded_scheme_name = "mouse_toggle_scheme_right";
+            private static readonly string[] allowed = { "n", "l", "xl" };
+            if (args.Length != 1 || Array.IndexOf(allowed, args[0]) < 0)
+            {
+                string my_executable = Path.GetFileName(Environment.ProcessPath);
+                Console.WriteLine($"Usage: {my_executable} [n|l|xl]\n\tn -- normal cursor size\n\tl -- large cursor size\n\txl -- extra large cursor size");
+                return 1;
+            }
+            string size = args[0];
+            string predefined_lefthanded_scheme_name = $"mouse_toggle_scheme_left_{size}";
+            string predefined_righthanded_scheme_name = $"mouse_toggle_scheme_right_{size}";
             bool leftHandedNow = SwapMouseButton(true);
             if (leftHandedNow)
             {
