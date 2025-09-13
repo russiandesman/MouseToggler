@@ -97,7 +97,7 @@ namespace mouse_switcher
             
         static int Main(string[] args)
         {
-            private static readonly string[] allowed = { "n", "l", "xl" };
+            string[] allowed = { "n", "l", "xl" };
             if (args.Length != 1 || Array.IndexOf(allowed, args[0]) < 0)
             {
                 string my_executable = Path.GetFileName(Environment.ProcessPath);
