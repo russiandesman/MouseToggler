@@ -121,6 +121,7 @@ namespace mouse_switcher
                 SetCursorScheme(predefined_lefthanded_scheme_name);
             }
             ApplyCursorScheme();
+            return 0;
         }
     }
 }
