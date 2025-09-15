@@ -1,0 +1,39 @@
+name: Build
+
+on:
+    workflow_dispatch:
+        inputs:
+            some_input:
+                description: 'some input descr'
+                required: true
+                default: 'UNKNOWN'
+                type: choice
+                options:
+                  - known
+                  - UNKNOWN
+
+jobs:
+    build-installer:
+        runs-on: windows-latest
+        steps:
+          - name: Checkout sources
+            uses: actions/checkout@v3
+            
+          - name: Find Dotnet Hardcoded
+            id: find_csc
+            shell: pwsh
+            run: |
+                $cscPath = "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
+                if (Test-Path -Path $cscPath -PathType Leaf) {
+                    Write-Output "csc.exe found at $cscPath"
+                    echo "cscPath=$cscPath" >> $env:GITHUB_OUTPUT
+                } else {
+                    Write-Error "csc.exe not found at $cscPath. .NET Framework 4.x may not be installed."
+                    exit 1
+                }   
+                
+          - name: Compile binary
+            shell: pwsh
+            run: |
+                ${{ steps.find_csc.outputs.cscPath }} /target:exe /out:mouse_toggle.exe mouse_toggle.cs
+                
