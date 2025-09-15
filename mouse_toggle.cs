@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
@@ -100,7 +101,7 @@ namespace mouse_switcher
             string[] allowed = { "n", "l", "xl" };
             if (args.Length != 1 || Array.IndexOf(allowed, args[0]) < 0)
             {
-                string my_executable = Path.GetFileName(Environment.ProcessPath);
+                string my_executable = Path.GetFileName(Process.GetCurrentProcess().MainModule.FileName);
                 Console.WriteLine("Usage: {0} [n|l|xl]\n\tn -- normal cursor size\n\tl -- large cursor size\n\txl -- extra large cursor size", my_executable);
                 return 1;
             }
