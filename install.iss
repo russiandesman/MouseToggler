@@ -1,5 +1,9 @@
 #define MyAppName "Mouse Toggle"
+
+#ifndef MyAppVersion
 #define MyAppVersion "0.2"
+#endif
+
 #define MyAppPublisher "russiandesman"
 #define MyAppExeName "mouse_toggle.exe"
 #define Sch "Control Panel\Cursors\Schemes"
@@ -10,12 +14,13 @@ AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
-DefaultDirName={pf}\{#MyAppName}
+DefaultDirName={commonpf}\{#MyAppName} v{#MyAppVersion}
 DisableProgramGroupPage=yes
 OutputDir=.
 OutputBaseFilename=MouseToggle_setup
 Compression=lzma
 SolidCompression=yes
+PrivilegesRequired=lowest
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -53,7 +58,8 @@ Root: HKCU; Subkey: "{#Sch}"; ValueType: expandsz; Flags: uninsdeletevalue; \
 Filename: "{sys}\reg.exe"; Parameters: "export ""hkcu\Control Panel\Cursors"" ""{app}\orig_cursors.reg"" /y"
 
 [UninstallRun]
-Filename: "{sys}\reg.exe"; Parameters: "import ""{app}\orig_cursors.reg"""
+Filename: "{sys}\reg.exe"; Parameters: "import ""{app}\orig_cursors.reg"""; RunOnceId: "DelRegistryBackup"
+
 
 [UninstallDelete]
 Type: files; Name: "{app}\orig_cursors.reg"
@@ -61,9 +67,9 @@ Type: files; Name: "{app}\orig_cursors.reg"
 [Code]
 function CursorScheme(Kind: String): String;
 var
-    template, tmp: String;
-const
-    template =
+    cursor_scheme: String;
+begin
+    cursor_scheme :=
         '{app}\cursors\{kind}\arrow.cur, ' +
         '{app}\cursors\{kind}\helpsel.cur, ' +
         '{app}\cursors\{kind}\working.ani, ' +
@@ -80,7 +86,7 @@ const
         '{app}\cursors\{kind}\up.cur, ' +
         '{app}\cursors\{kind}\link.cur ';
 
-begin
-    tmp := StringReplace(template, '{app}', ExpandConstant('{app}'), [rfReplaceAll]);
-    Result := StringReplace(tmp, '{kind}', Kind, [rfReplaceAll]);
+    StringChangeEx(cursor_scheme, '{app}', ExpandConstant('{app}'), False);
+    StringChangeEx(cursor_scheme, '{kind}', Kind, False);
+    Result := cursor_scheme;
 end;
