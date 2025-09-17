@@ -2,15 +2,6 @@ name: Build
 
 on:
     workflow_dispatch:
-        inputs:
-            some_input:
-                description: 'some input descr'
-                required: true
-                default: 'UNKNOWN'
-                type: choice
-                options:
-                  - known
-                  - UNKNOWN
 
 jobs:
     build-installer:
@@ -18,7 +9,18 @@ jobs:
         steps:
           - name: Checkout sources
             uses: actions/checkout@v3
-            
+
+          - name: Get Version Suffix
+            id: ver
+            shell: pwsh
+            run: |
+                $ver = $env:GITHUB_REF_NAME
+                if ($env:GITHUB_REF_TYPE -eq "branch") {
+                    $ver = "${env:GITHUB_REF_NAME}_${env:GITHUB_SHA}"
+                }
+                Write-Output "ver = $ver"
+                echo "ver=$ver" >> $env:GITHUB_OUTPUT
+
           - name: Find Dotnet Hardcoded
             id: find_csc
             shell: pwsh
@@ -37,25 +39,16 @@ jobs:
             run: |
                 ${{ steps.find_csc.outputs.cscPath }} /target:exe /out:mouse_toggle.exe mouse_toggle.cs
 
-          - name: Dump GitHub context
-            env:
-                GITHUB_CONTEXT: ${{ toJson(github) }}
-            run: echo "$GITHUB_CONTEXT"
-
-          - name: Info
-            shell: pwsh
-            run: |
-                Write-Output "Current dir content"
-                ls
-                Write-Output "Current dir"
-                pwd
-
           - name: Build installer package
             uses: Minionguyjpro/Inno-Setup-Action@v1.2.7
             with:
                 path: install.iss
                 options: |
                     /O+
-                    /DMyAppVersion=0.2
+                    /DMyAppVersion=${{ steps.ver.outputs.ver }}
 
-                
+          - name: Result upload
+            uses: actions/upload-artifact@v4
+            with:
+              name: installer_${{ steps.ver.outputs.ver }}
+              path: Output
