@@ -37,6 +37,11 @@ jobs:
             run: |
                 ${{ steps.find_csc.outputs.cscPath }} /target:exe /out:mouse_toggle.exe mouse_toggle.cs
 
+          - name: Dump GitHub context
+            env:
+                GITHUB_CONTEXT: ${{ toJson(github) }}
+            run: echo "$GITHUB_CONTEXT"
+
           - name: Info
             shell: pwsh
             run: |
