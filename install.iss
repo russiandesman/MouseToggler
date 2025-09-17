@@ -1,7 +1,7 @@
 #define MyAppName "Mouse Toggle"
 
 #ifndef MyAppVersion
-#define MyAppVersion "0.2"
+#define MyAppVersion "MISSED_VERSION"
 #endif
 
 #define MyAppPublisher "russiandesman"
@@ -14,10 +14,10 @@ AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
-DefaultDirName={commonpf}\{#MyAppName} v{#MyAppVersion}
+DefaultDirName={commonpf}\{#MyAppName} {#MyAppVersion}
 DisableProgramGroupPage=yes
 ;OutputDir=.
-OutputBaseFilename=MouseToggle_setup_v{#MyAppVersion}
+OutputBaseFilename=MouseToggle_setup_{#MyAppVersion}
 Compression=lzma
 SolidCompression=yes
 PrivilegesRequired=lowest
