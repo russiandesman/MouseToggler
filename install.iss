@@ -14,7 +14,7 @@ AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
-DefaultDirName={commonpf}\{#MyAppName} {#MyAppVersion}
+DefaultDirName={userlocalappdata}\Programs\{#MyAppName} {#MyAppVersion}
 DisableProgramGroupPage=yes
 ;OutputDir=.
 OutputBaseFilename=MouseToggle_setup_{#MyAppVersion}
@@ -33,12 +33,12 @@ Source: {#MyAppExeName};           DestDir: "{app}"; Flags: ignoreversion
 Source: "cursors\*";               DestDir: "{app}\cursors"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
-Name: "{commonprograms}\{#MyAppName} normal"; Filename: "{app}\{#MyAppExeName}"; Parameters: "n"
-Name: "{commonprograms}\{#MyAppName} large";  Filename: "{app}\{#MyAppExeName}"; Parameters: "l"
-Name: "{commonprograms}\{#MyAppName} XL";     Filename: "{app}\{#MyAppExeName}"; Parameters: "xl"
-Name: "{commondesktop}\{#MyAppName} normal"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; Parameters: "n"
-Name: "{commondesktop}\{#MyAppName} large";  Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; Parameters: "l"
-Name: "{commondesktop}\{#MyAppName} XL";     Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; Parameters: "xl"
+Name: "{autoprograms}\{#MyAppName} normal"; Filename: "{app}\{#MyAppExeName}"; Parameters: "n"
+Name: "{autoprograms}\{#MyAppName} large";  Filename: "{app}\{#MyAppExeName}"; Parameters: "l"
+Name: "{autoprograms}\{#MyAppName} XL";     Filename: "{app}\{#MyAppExeName}"; Parameters: "xl"
+Name: "{autodesktop}\{#MyAppName} normal"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; Parameters: "n"
+Name: "{autodesktop}\{#MyAppName} large";  Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; Parameters: "l"
+Name: "{autodesktop}\{#MyAppName} XL";     Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; Parameters: "xl"
 
 [Registry]
 Root: HKCU; Subkey: "{#Sch}"; ValueType: expandsz; Flags: uninsdeletevalue; \
