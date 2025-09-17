@@ -49,6 +49,8 @@ jobs:
             uses: Minionguyjpro/Inno-Setup-Action@v1.2.7
             with:
                 path: install.iss
-                options: /O+ /DMyAppVersion=0.2
+                options: |
+                    /O+
+                    /DMyAppVersion=0.2
 
                 
