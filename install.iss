@@ -14,7 +14,7 @@ AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
-DefaultDirName={userlocalappdata}\Programs\{#MyAppName} {#MyAppVersion}
+DefaultDirName={userpf}\{#MyAppName} {#MyAppVersion}
 DisableProgramGroupPage=yes
 ;OutputDir=.
 OutputBaseFilename=MouseToggle_setup_{#MyAppVersion}
@@ -89,4 +89,17 @@ begin
     StringChangeEx(cursor_scheme, '{app}', ExpandConstant('{app}'), False);
     StringChangeEx(cursor_scheme, '{kind}', Kind, False);
     Result := cursor_scheme;
+end;
+
+function InitializeSetup(): Boolean;
+var
+    Err: Integer;
+begin
+    Result := IsDotNetInstalled(net48, 0);
+    if not Result then
+    begin
+        MsgBox('This application requires .NET Framework 4.8 or later.'#13#10+
+               'Please install it from Microsoft''s website.', mbCriticalError, MB_OK);
+        ShellExec('open', 'https://dotnet.microsoft.com/download/dotnet-framework/net48', '', '', SW_SHOWNORMAL, ewNoWait, Err);
+    end;
 end;
