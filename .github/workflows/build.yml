@@ -39,6 +39,17 @@ jobs:
             run: |
                 ${{ steps.find_csc.outputs.cscPath }} /target:exe /out:mouse_toggle.exe mouse_toggle.cs
 
+          - name: Prepare icons
+            shell: cmd
+            run: |
+                choco install -y imagemagick
+                call refreshenv
+                magick -density 300 -define icon:auto-resize=256,128,96,64,48,32,16 -background none icons/icon_xl.svg icons/xl.ico
+                magick -density 300 -define icon:auto-resize=256,128,96,64,48,32,16 -background none icons/icon_xl.svg icons/xl.ico
+                magick -density 300 -define icon:auto-resize=256,128,96,64,48,32,16 -background none icons/icon_xl.svg icons/xl.ico
+                dir
+                dir icons
+
           - name: Build installer package
             uses: Minionguyjpro/Inno-Setup-Action@v1.2.7
             with:
