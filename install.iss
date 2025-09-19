@@ -21,6 +21,7 @@ OutputBaseFilename=MouseToggle_setup_{#MyAppVersion}
 Compression=lzma
 SolidCompression=yes
 PrivilegesRequired=lowest
+SetupIconFile=icons\xl.ico
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -31,14 +32,15 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: {#MyAppExeName};           DestDir: "{app}"; Flags: ignoreversion
 Source: "cursors\*";               DestDir: "{app}\cursors"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "icons\*";                 DestDir: "{app}\icons";   Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
-Name: "{autoprograms}\{#MyAppName} normal"; Filename: "{app}\{#MyAppExeName}"; Parameters: "n"
-Name: "{autoprograms}\{#MyAppName} large";  Filename: "{app}\{#MyAppExeName}"; Parameters: "l"
-Name: "{autoprograms}\{#MyAppName} XL";     Filename: "{app}\{#MyAppExeName}"; Parameters: "xl"
-Name: "{autodesktop}\{#MyAppName} normal"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; Parameters: "n"
-Name: "{autodesktop}\{#MyAppName} large";  Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; Parameters: "l"
-Name: "{autodesktop}\{#MyAppName} XL";     Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; Parameters: "xl"
+Name: "{autoprograms}\{#MyAppName} normal"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\icons\n.ico";  Parameters: "n"
+Name: "{autoprograms}\{#MyAppName} large";  Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\icons\l.ico";  Parameters: "l"
+Name: "{autoprograms}\{#MyAppName} XL";     Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\icons\xl.ico"; Parameters: "xl"
+Name: "{autodesktop}\{#MyAppName} normal";  Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\icons\n.ico";  Tasks: desktopicon; Parameters: "n"
+Name: "{autodesktop}\{#MyAppName} large";   Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\icons\l.ico";  Tasks: desktopicon; Parameters: "l"
+Name: "{autodesktop}\{#MyAppName} XL";      Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\icons\xl.ico"; Tasks: desktopicon; Parameters: "xl"
 
 [Registry]
 Root: HKCU; Subkey: "{#Sch}"; ValueType: expandsz; Flags: uninsdeletevalue; \
