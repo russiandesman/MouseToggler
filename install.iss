@@ -21,7 +21,7 @@ OutputBaseFilename=MouseToggle_setup_{#MyAppVersion}
 Compression=lzma
 SolidCompression=yes
 PrivilegesRequired=lowest
-SetupIconFile=setup_icon.ico
+SetupIconFile=icons\xl.ico
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
