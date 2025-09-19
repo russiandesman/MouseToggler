@@ -47,6 +47,7 @@ jobs:
                 magick -quiet -density 300 -define icon:auto-resize=256,128,96,64,48,32,16 -background none icons\icon_xl.svg icons\xl.ico
                 magick -quiet -density 300 -define icon:auto-resize=256,128,96,64,48,32,16 -background none icons\icon_l.svg  icons\l.ico
                 magick -quiet -density 300 -define icon:auto-resize=256,128,96,64,48,32,16 -background none icons\icon_n.svg  icons\n.ico
+                copy icons\xl.ico setup_icon.ico
 
           - name: Build installer package
             uses: Minionguyjpro/Inno-Setup-Action@v1.2.7
